@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kapitel 5 – Pneumonie</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+  :root {
+    --bg: #f5f3ee;
+    --ink: #1a1814;
+    --muted: #6b6560;
+    --accent: #1e4d6b;
+    --accent2: #c0392b;
+    --accent3: #2e7d52;
+    --highlight: #e8f4f0;
+    --warn: #fdf3e0;
+    --warn-border: #e67e22;
+    --card-bg: #ffffff;
+    --border: #d8d3cb;
+    --merke-bg: #eaf2f8;
+    --merke-border: #1e4d6b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.65;
+    padding: 28px 20px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .chapter-header {
+    border-bottom: 3px solid var(--accent);
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+  }
+  .chapter-header .kap-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .chapter-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--accent);
+    margin: 4px 0 2px;
+  }
+  .chapter-header .source {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* TOC */
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+  .toc a {
+    background: var(--accent);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0.85;
+    transition: opacity .2s;
+  }
+  .toc a:hover { opacity: 1; }
+
+  /* Section */
+  .section {
+    margin-bottom: 26px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--accent);
+    border-left: 4px solid var(--accent);
+    padding-left: 10px;
+    margin-bottom: 12px;
+  }
+
+  /* Cards grid */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  @media(max-width:640px){
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .card-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  /* Merke box */
+  .merke {
+    background: var(--merke-bg);
+    border-left: 4px solid var(--merke-border);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    margin: 10px 0;
+  }
+  .merke-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  /* Warn box */
+  .warn {
+    background: var(--warn);
+    border-left: 4px solid var(--warn-border);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    margin: 10px 0;
+  }
+  .warn-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--warn-border);
+    margin-bottom: 4px;
+  }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    margin: 8px 0 12px;
+  }
+  th {
+    background: var(--accent);
+    color: #fff;
+    text-align: left;
+    padding: 6px 8px;
+    font-weight: 600;
+    font-size: 11.5px;
+  }
+  td {
+    padding: 5px 8px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:nth-child(even) td { background: #f9f8f6; }
+
+  /* Tag badge */
+  .badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-size: 10.5px;
+    font-weight: 600;
+    margin: 1px;
+  }
+  .badge-blue { background:#daeaf7; color: #1e4d6b; }
+  .badge-red  { background:#fce8e6; color: #c0392b; }
+  .badge-green{ background:#e2f4eb; color: #2e7d52; }
+  .badge-orange{ background:#fdf0e0; color: #d35400; }
+  .badge-gray { background:#eeebe6; color: #5a5550; }
+
+  ul { padding-left: 16px; }
+  li { margin-bottom: 3px; }
+  b { font-weight: 600; }
+  .italic { font-style: italic; }
+  .small { font-size: 11.5px; color: var(--muted); }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* Pneumonieform row */
+  .form-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+  .form-icon {
+    min-width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .icon-alv { background: var(--accent); }
+  .icon-int { background: var(--accent3); }
+
+  .crb-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 8px 0;
+  }
+  .crb-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12.5px;
+    flex: 1 1 160px;
+  }
+  .crb-item .crb-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .crb-item .crb-text { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+
+  .flow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 6px 0;
+  }
+  .flow-step {
+    background: var(--accent);
+    color: #fff;
+    padding: 3px 9px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .flow-arrow { color: var(--muted); font-size: 13px; }
+
+  .tb-stages {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+    margin: 8px 0;
+  }
+  .tb-stage {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 0 0 6px 6px;
+    padding: 10px;
+    font-size: 12.5px;
+  }
+  .tb-stage-title { font-weight: 600; color: var(--accent); margin-bottom: 4px; font-size: 12px; }
+
+  @media(max-width:580px){ .tb-stages{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div class="chapter-header">
+  <div class="kap-label">Kapitel 5</div>
+  <h1>Pneumonie</h1>
+  <div class="source">Wormanns · Thoraxdiagnostik · Thieme 2017 &nbsp;|&nbsp; Klinisch relevante Zusammenfassung</div>
+</div>
+
+<div class="toc">
+  <a href="#grundlagen">Grundlagen</a>
+  <a href="#cap">CAP</a>
+  <a href="#nosokomial">Nosokomial</a>
+  <a href="#opportunistisch">Opportunistisch</a>
+  <a href="#mykobakteriosen">Mykobakteriosen</a>
+  <a href="#komplikationen">Komplikationen</a>
+</div>
+
+
+<!-- ═══ GRUNDLAGEN ═══ -->
+<div class="section" id="grundlagen">
+  <div class="section-title">Grundlagen &amp; Pathomorphologie</div>
+
+  <div class="merke">
+    <div class="merke-label">Merke</div>
+    Pathologisch = jede Lungentzündung ist Pneumonie. Klinisch: <b>Pneumonie</b> = mikrobiell; <b>Pneumonitis</b> = physikalisch/chemisch. Ausheilung entweder folgenlos (<i>restitutio ad integrum</i>) oder als <b>karnifizierte Pneumonie</b> (Narbengewebe).
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title">Lobärpneumonie</div>
+      Gesamter Lappen betroffen. Ausbreitung via Bronchialsystem + Kohn-Poren.<br>
+      <div class="flow" style="margin-top:6px;">
+        <span class="flow-step">Anschoppung</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">rote Hepat.</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">graue Hepat.</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-step">Lyse</span>
+      </div>
+      <div class="small" style="margin-top:6px;">CT/Rx: weitgehende <b>Konsolidierung</b> des Lappens</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Bronchopneumonie <span class="badge badge-gray">häufigste Form</span></div>
+      Bronchogene Verteilung → peribronchiales Parenchym betroffen.<br>
+      <span class="small">CT: peribronchiale Milchglastrübungen + Konsolidierungen, oft simultan in mehreren Lappen</span>
+    </div>
+    <div class="card">
+      <div class="card-title">Herdpneumonie</div>
+      Lokal limitiert, kein Lappen-Befall. Oft asymptomatisch!<br>
+      <div class="warn" style="margin-top:6px;padding:6px 10px;">
+        <span style="font-size:11px;font-weight:600;color:#d35400;">DD:</span> <span style="font-size:12px;">Lungenkarzinom — beide als Konsolidierung oder fokale MGT</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Interstitielle Pneumonie</div>
+      Primär im Interstitium (intrazelluläre Erreger: Viren, Chlamydien).<br>
+      <span class="small">CT: <b>Milchglastrübungen</b> dominieren</span>
+    </div>
+  </div>
+
+  <div class="merke">
+    <div class="merke-label">Wichtig</div>
+    Gleicher Erreger → verschiedene Formen (je nach Virulenz + Immunstatus). Verschiedene Erreger → identisches Bild. <b>Präzise Erregerdiagnostik radiologisch nicht möglich</b>, aber Erregerklasse (Bakterien/Viren/Pilze) oft benennbar.
+  </div>
+
+  <table>
+    <thead><tr><th>Radiomorphologie</th><th>Typische Erregerklasse</th></tr></thead>
+    <tbody>
+      <tr><td>Lobäre Konsolidierung</td><td>Pneumokokken, Staph. aureus, Legionellen, Mykobakterien</td></tr>
+      <tr><td>Konsolidierung <b>mit Kavität</b></td><td>Staph. aureus, gramneg. Keime, Anaerobier, Mykobakterien — <b>nie</b> Mykoplasmen/Viren</td></tr>
+      <tr><td>Abszess</td><td>Meist Anaerobier</td></tr>
+      <tr><td>Retikulonoduläres Muster</td><td>Viren, Mykoplasmen</td></tr>
+      <tr><td>Miliares Muster</td><td>Tuberkulose, Kandidapneumonie</td></tr>
+      <tr><td>Pneumatozelen/Zysten</td><td>Staph. aureus, Pneumokokken, <i>P. jirovecii</i></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<hr>
+
+<!-- ═══ CAP ═══ -->
+<div class="section" id="cap">
+  <div class="section-title">5.1 Ambulant erworbene Pneumonie (CAP)</div>
+
+  <div class="merke">
+    <div class="merke-label">Definition</div>
+    Akute untere Atemwegsinfektion mit <b>Nachweis einer pulmonalen Verschattung im Röntgenbild</b> (auch ohne Auskultationsbefund).
+  </div>
+
+  <div class="grid-2" style="margin-bottom:10px;">
+    <div class="card">
+      <div class="card-title">Typische Pneumonie</div>
+      <ul>
+        <li>Erreger: <b>Bakterien</b> (Pneumokokken, Staphylokokken)</li>
+        <li>Klinik: <b>Akut</b> — Fieber, Schüttelfrost, eitriger Auswurf</li>
+        <li>Ort: <b>Alveolarräume</b></li>
+        <li>Bild: <b>Konsolidierung</b></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Atypische Pneumonie</div>
+      <ul>
+        <li>Erreger: intrazelluläre Keime (Chlamydien, Mykoplasmen, Legionellen), <b>Viren</b></li>
+        <li>Klinik: <b>Subakut</b> — mäßiges Fieber, Kopf-/Gliederschmerzen</li>
+        <li>Ort: <b>Interstitium</b></li>
+        <li>Bild: Milchglastrübung, retikuläres Muster</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="margin-bottom:8px;"><b>CRB-65-Score</b> — Risikostratifizierung (je 1 Punkt):</p>
+  <div class="crb-box">
+    <div class="crb-item"><div class="crb-letter">C</div><div class="crb-text">Confusion (Bewusstseinstrübung)</div></div>
+    <div class="crb-item"><div class="crb-letter">R</div><div class="crb-text">Respiratory rate ≥ 30/min</div></div>
+    <div class="crb-item"><div class="crb-letter">B</div><div class="crb-text">RR systolisch ≤ 90 mmHg oder diastolisch ≤ 60 mmHg</div></div>
+    <div class="crb-item"><div class="crb-letter">65</div><div class="crb-text">Alter ≥ 65 Jahre</div></div>
+  </div>
+
+  <table>
+    <thead><tr><th>CRB-65</th><th>Behandlung</th><th>Röntgen Diagnose</th><th>Röntgen Verlauf</th></tr></thead>
+    <tbody>
+      <tr><td>0 (ohne RF)</td><td>Ambulant</td><td>Empfohlen</td><td>Optional bei Tumorrisiko</td></tr>
+      <tr><td>0 (mit RF)</td><td>Ambulant</td><td><b>Obligat</b></td><td>–</td></tr>
+      <tr><td>1</td><td>Station / ambulant</td><td><b>Obligat</b></td><td>Empfohlen (Raucher, &gt;65 J., Begleit-EKr.)</td></tr>
+      <tr><td>≥ 2</td><td>Intensivstation</td><td><b>Obligat</b></td><td>–</td></tr>
+    </tbody>
+  </table>
+
+  <div class="merke">
+    <div class="merke-label">CT-Indikationen bei CAP (laut S3-Leitlinie)</div>
+    <ul>
+      <li><b>Progrediente Pneumonie</b>: radiologischer Progress <i>nur bei gleichzeitiger klinischer Verschlechterung</i></li>
+      <li><b>Verzögert ansprechende Pneumonie</b>: keine klinische Stabilität innerhalb 72 h (Kriterien: HF ≤100, AF ≤24, RRsys ≥90, Temp ≤37,8°C, PaO₂ ≥60, SpO₂ ≥90%)</li>
+      <li><b>Lungenabszess</b></li>
+      <li>Ansonsten: <b>keine CT-Indikation</b> zum Diagnosezeitpunkt!</li>
+    </ul>
+  </div>
+
+  <div class="merke">
+    <div class="merke-label">Viruspneumonie – typische CT-Befunde</div>
+    Bilaterale MGT · bilaterale unscharf berandete Rundherde · confluierende Konsolidierungen · retikuläre Verdichtungen · kleine zentrilobuläre Herde · Pleuraerguss · (hiläre LAP bei Kindern)<br>
+    <span class="small">→ Erregervorhersage radiologisch <b>nicht möglich</b></span>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══ NOSOKOMIAL ═══ -->
+<div class="section" id="nosokomial">
+  <div class="section-title">5.2 Nosokomiale Pneumonie</div>
+
+  <div class="merke">
+    <div class="merke-label">Definition</div>
+    Auftreten <b>≥ 48 h nach Hospitalisation</b> (in Literatur auch 72 h), Patient war bei Aufnahme noch nicht in Inkubation. <b>2. häufigste nosokomiale Infektion</b>, hohe ICU-Mortalität.
+  </div>
+
+  <p>Erregerspektrum: <b>krankenhausspezifische Problemkeime</b> mit multiplen Resistenzen → komplexerer Verlauf als CAP, multifokale Infiltrate, wechselnde Befunde typisch.</p>
+
+  <div class="warn">
+    <div class="warn-label">Differenzialdiagnosen bei beatmeten Patienten</div>
+    Atelektase · Pleuraerguss · Lungenödem · Lungeninfarkt · ARDS · Alveoläre Hämorrhagie · Medikamententoxizität · Postoperative Veränderungen<br>
+    <span class="small">→ Akribische Bildanalyse + klinische Daten + Klinikerbesprechung essenziell!</span>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══ OPPORTUNISTISCH ═══ -->
+<div class="section" id="opportunistisch">
+  <div class="section-title">5.3 Opportunistische Pneumonien</div>
+
+  <div class="merke">
+    <div class="merke-label">Merke</div>
+    Entstehen durch Immuninkompetenz. Erregerspektrum abhängig vom <b>Typ des Immundefekts</b>. Röntgenbild oft <b>normal oder uncharakteristisch</b> → CT-Indikation großzügig stellen!
+  </div>
+
+  <table style="margin-bottom:14px;">
+    <thead><tr><th>Klinische Konstellation</th><th>Typische Erreger</th></tr></thead>
+    <tbody>
+      <tr><td><b>Aplasie</b> (Neutrophile &lt;500/µl)</td><td>Früh: grampos. Kokken, gramneg. Keime; ab Tag 5: <b>Pilze (Aspergillus, Candida)</b></td></tr>
+      <tr><td><b>AIDS</b> (↓ CD4-T-Zellen)</td><td><b>P. jirovecii</b> (häufigste Erstmanifestation), Tuberkulose, Toxoplasmose</td></tr>
+      <tr><td><b>Organtransplantation</b></td><td>Legionellen, CMV, Aspergillus, Nocardia</td></tr>
+      <tr><td><b>Stammzelltransplantation</b></td><td>Konditionierungsphase: Pneumokokken; danach wie Aplasie</td></tr>
+      <tr><td><b>Hochdosis-Kortikosteroide</b></td><td>P. jirovecii, Tuberkulosereaktivierung möglich</td></tr>
+    </tbody>
+  </table>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Invasive pulmonale Aspergillose (IPA)</div>
+      Vor allem bei hämatologischen Patienten in <b>Aplasie</b>. Aerogener Infektionsweg, angioinvasiv → Hämorrhagien, Infarzierungen.<br>
+      <ul style="margin-top:6px;">
+        <li>Wenige größere Rundherde mit <b>Halozeichen</b> (perifokale MGT = Hämorrhagie)</li>
+        <li>Periphere trianguläre Konsolidierungen ± Halo</li>
+        <li>Spätzeichen: <b>Luftsichelzeichen</b> (Nekroseresorption bei wiedereinsetzendem Immunsystem) — <i>nicht als Progress werten!</i></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">PCP — <i>Pneumocystis jirovecii</i></div>
+      Häufige AIDS-Erstmanifestation, betrifft 2/3 der Patienten.<br>
+      Klinik: progrediente Dyspnoe, <b>Auskultation oft normal</b>.<br>
+      <ul style="margin-top:6px;">
+        <li>Röntgen: bilaterale <b>perihiläre</b> Verschattungen → diffus</li>
+        <li>CT: diffuse bilaterale <b>MGT</b>, relative Aussparung der Peripherie, verdickte Interlobulärsepten, Zysten, Pneumothorax</li>
+        <li>Röntgen kann normal sein → CT!</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="merke">
+    <div class="merke-label">CT-Indikationen bei Immuninkompetenz</div>
+    Antibiotikarefraktäres Fieber · Infiltratcharakterisierung (Pilze?) · vor Bronchoskopie/Biopsie · Verlaufskontrolle Pilzpneumonie · akute Komplikationen (Hämoptoe, resp. Verschlechterung)
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══ MYKOBAKTERIOSEN ═══ -->
+<div class="section" id="mykobakteriosen">
+  <div class="section-title">5.4 Mykobakteriosen</div>
+
+  <p style="margin-bottom:10px;">TBC = Mycobacterium tuberculosis. Aerogene Übertragung. In Deutschland ~4.200 Neuerkrankungen/Jahr, aber zunehmende Resistenzen (MDR-TB, XDR-TB) und Migrationsdynamik relevant.</p>
+
+  <div class="tb-stages">
+    <div class="tb-stage">
+      <div class="tb-stage-title">① Primärinfektion</div>
+      <ul>
+        <li>Ghon-Herd + hiläre LAP = <b>Ranke-Komplex</b></li>
+        <li>95 % heilt asymptomatisch aus (Granulome, Verkalkungen)</li>
+        <li>5 % → progredient (Hilumlymphknoten-TB oder Primärherdphthise)</li>
+        <li>Ghon-Herd als verkalkter Rundherd jahrzehntelang sichtbar</li>
+      </ul>
+    </div>
+    <div class="tb-stage">
+      <div class="tb-stage-title">② Generalisation</div>
+      <ul>
+        <li>Hämatogen (bevorzugt Seg. 1, 2, 6 bds.)</li>
+        <li>Assmann-Frühinfiltrat / Simon-Spitzenherde</li>
+        <li><b>Miliartuberkulose</b>: diffuse hämatogene Streuung → miliares Muster (zufällige Verteilung, CT)</li>
+        <li>Pleuritis exsudativa (5 % = einzige Manifestation)</li>
+      </ul>
+    </div>
+    <div class="tb-stage">
+      <div class="tb-stage-title">③ Organstadium</div>
+      <ul>
+        <li>Exsudativ: verkäsende Pneumonie, Konsolidierungen + MGT</li>
+        <li>Produktiv: multiple scharf berandete Rundherde (Tuberkulome)</li>
+        <li>Kavernös: Kavitäten + bronchogene Streuung</li>
+        <li>Fibrozirrhotisch: fibrotische Schrumpfung, Bronchiektasen</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="merke">
+    <div class="merke-label">Postprimäre TBC vs. Primär-TBC</div>
+    <ul>
+      <li>Infiltrate typischerweise <b>apikal posterior</b> (Seg. 1, 2) + apikale Unterlappensegmente</li>
+      <li>LAP selten (~5 %), Kavitäten häufiger (50 % vs. &lt;30 %)</li>
+      <li>AIDS + reduzierte Immunreaktion: LAP persistiert, Kavitäten selten</li>
+    </ul>
+  </div>
+
+  <div class="merke">
+    <div class="merke-label">CT-Aktivitätszeichen Tuberkulose</div>
+    Zentrilobuläre Verdichtungen · lobuläre Konsolidierungen · zentrilobuläre Rundherde · <b>Tree-in-Bud-Muster</b> · Kavitäten · Milchglastrübungen<br>
+    <span class="small">Aber: auch bei inaktiver TBC möglich → sichere Differenzierung nur durch <b>Erregernachweis im Sputum</b>. Inaktivität: Befundkonstanz ≥4–6 Monate. Verkalkte Rundherde = sicher inaktiv.</span>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Aktive TBC – Röntgenzeichen</div>
+      <ul>
+        <li>Konsolidierungen</li>
+        <li>Milchglastrübungen</li>
+        <li>Kavitäten</li>
+        <li>Unscharf begrenzte Rundherde</li>
+        <li>Pleuraerguss</li>
+        <li>Hiläre/mediastinale LAP</li>
+        <li>Miliares Muster</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Atypische Mykobakteriosen (MOTT)</div>
+      Ubiquitär, kein Mensch-zu-Mensch. Immunkompetente: 2 Muster:
+      <ul style="margin-top:4px;">
+        <li><b>Klassisch</b>: wie TBC — apikale Kavitäten, Narben, Tree-in-Bud</li>
+        <li><b>Nicht klassisch</b>: bilaterale Rundherde, <b>Bronchiektasen in Mittellappen/Lingula</b>, keine apikale Präferenz (MAC, v. a. ältere Frauen)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══ KOMPLIKATIONEN ═══ -->
+<div class="section" id="komplikationen">
+  <div class="section-title">Komplikationen — klinisch relevant</div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Pleuraempyem</div>
+      Meist großer, oft <b>gekammerter</b> Pleuraerguss. Radiologisch nicht sicher von sympathischem Erguss zu trennen.<br>
+      <b>Suggestive CT-Merkmale:</b>
+      <ul style="margin-top:4px;">
+        <li>Verdickung + KM-Enhancement von Pleura parietalis + visceralis</li>
+        <li>Verzögertes Auftreten gegenüber Pneumonie</li>
+        <li>Sonografisch nicht echofrei</li>
+        <li>Persistierend hohe Entzündungsparameter</li>
+      </ul>
+      <div class="small" style="margin-top:4px;">S3-Leitlinie: Punktion obligat bei &gt;5 cm Erguss im Röntgen lateral</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Lungenabszess</div>
+      CT: früh rundliche wasserisodense Areale in Pneumonie, später <b>Kavität mit Luft-Flüssigkeits-Spiegel</b>.<br>
+      <ul style="margin-top:4px;">
+        <li>Antibiotika erreichen Inneres kaum → langer Verlauf</li>
+        <li>CT obligat bei Verdacht (Obstruktion, Fremdkörper ausschließen)</li>
+        <li>Bei Therapieversagen: <b>CT/Durchleuchtungs-geführte Drainage</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:12px;">
+    <div class="card">
+      <div class="card-title">TBC-spezifische Komplikationen</div>
+      <ul>
+        <li><b>Aspergillom</b> in alter Kaverne (Hämoptysen, 5 % letal)</li>
+        <li><b>Rasmussen-Aneurysma</b>: Arrosion einer Pulmonalarterie → lebensbedrohliche Hämoptysen</li>
+        <li>Spontanpneumothorax durch bronchopleurale Fistel</li>
+        <li>Chronisches Cor pulmonale bei ausgedehnter Destruktion</li>
+        <li><b>Empyema necessitans</b>: Pleuraempyem bricht in Thoraxwand durch</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Therapie-Monitoring CAP (Radiologisch)</div>
+      <ul>
+        <li>Röntgenkontrolle frühestens <b>2 Wochen nach Therapieende</b></li>
+        <li>Innerhalb 72 h: Infiltratzunahme allein <b>nicht</b> als Progredienz werten — nur bei gleichzeitiger klinischer Verschlechterung</li>
+        <li>CT erst bei Komplikationen</li>
+        <li>TBC: Regredienz radiologisch bis zu <b>2 Jahre</b>, LAP noch länger. Therapieversagen erst nach 3 Monaten beurteilbar.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:30px;padding-top:12px;border-top:1px solid var(--border);text-align:center;" class="small">
+  Wormanns · Thoraxdiagnostik (ISBN 978-3-13-169591-8) · © 2017 Georg Thieme Verlag KG &nbsp;|&nbsp; Nur für den persönlichen Gebrauch
+</div>
+
+</body>
+</html>
