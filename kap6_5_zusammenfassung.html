@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kap. 6.5 · Diffuse Lungenparenchymerkrankungen – Zusammenfassung</title>
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --surface: #ffffff;
+    --border: #e2e6eb;
+    --accent: #1a5fa8;
+    --accent-light: #e8f0fb;
+    --accent2: #c0392b;
+    --accent2-light: #fdf0ee;
+    --green: #1a7a4a;
+    --green-light: #e8f5ee;
+    --orange: #c47c00;
+    --orange-light: #fdf5e0;
+    --purple: #6b3fa0;
+    --purple-light: #f3eefb;
+    --text: #1a1d23;
+    --text-muted: #5a6270;
+    --tag-bg: #dde8f7;
+    --tag-text: #1a4a80;
+    font-size: 15px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .page-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  .page-header {
+    border-left: 5px solid var(--accent);
+    padding: 0.6rem 0 0.6rem 1.2rem;
+    margin-bottom: 2.5rem;
+  }
+  .page-header .chapter {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+  .page-header h1 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text);
+  }
+  .page-header .source {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+  }
+
+  /* ── Section headers ── */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 2rem 0 1rem;
+  }
+  .section-title .num {
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .section-title h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.1rem 1.3rem;
+    margin-bottom: 1rem;
+  }
+  .card h3 {
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--text);
+  }
+
+  /* ── Entity rows (disease cards) ── */
+  .entity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 600px) { .entity-grid { grid-template-columns: 1fr; } }
+
+  .entity-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+  }
+  .entity-card .ename {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── Criteria boxes ── */
+  .criteria-box {
+    border-radius: 7px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.8rem;
+  }
+  .criteria-box.positive { background: var(--green-light); border-left: 4px solid var(--green); }
+  .criteria-box.negative { background: var(--accent2-light); border-left: 4px solid var(--accent2); }
+  .criteria-box.info    { background: var(--accent-light); border-left: 4px solid var(--accent); }
+  .criteria-box.warn    { background: var(--orange-light); border-left: 4px solid var(--orange); }
+  .criteria-box.purple  { background: var(--purple-light); border-left: 4px solid var(--purple); }
+
+  .criteria-box .label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .criteria-box.positive .label { color: var(--green); }
+  .criteria-box.negative .label { color: var(--accent2); }
+  .criteria-box.info    .label { color: var(--accent); }
+  .criteria-box.warn    .label { color: var(--orange); }
+  .criteria-box.purple  .label { color: var(--purple); }
+
+  /* ── Lists ── */
+  ul.dot {
+    list-style: none;
+    padding: 0;
+  }
+  ul.dot li {
+    padding: 0.18rem 0 0.18rem 1.1rem;
+    position: relative;
+    font-size: 0.88rem;
+    color: var(--text);
+  }
+  ul.dot li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  ul.dot.red li::before { color: var(--accent2); }
+  ul.dot.green li::before { color: var(--green); }
+  ul.dot.orange li::before { color: var(--orange); }
+
+  /* ── Tags ── */
+  .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
+  .tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 0.73rem;
+    font-weight: 600;
+    padding: 0.15rem 0.55rem;
+    border-radius: 3px;
+  }
+  .tag.red { background: #fde8e8; color: #a01515; }
+  .tag.green { background: #dff2e9; color: #145c30; }
+  .tag.orange { background: #fdefd8; color: #8a5200; }
+  .tag.purple { background: #ece6f7; color: #4e2a80; }
+
+  /* ── Merke box ── */
+  .merke {
+    background: #fffbea;
+    border: 1.5px solid #f0c520;
+    border-radius: 8px;
+    padding: 0.9rem 1.1rem;
+    margin: 1.2rem 0;
+  }
+  .merke .merke-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #b08a00;
+    margin-bottom: 0.4rem;
+  }
+  .merke p, .merke li { font-size: 0.87rem; }
+
+  /* ── Table ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.83rem;
+    margin-top: 0.6rem;
+  }
+  th {
+    background: var(--accent);
+    color: #fff;
+    text-align: left;
+    padding: 0.5rem 0.7rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+  td {
+    border: 1px solid var(--border);
+    padding: 0.5rem 0.7rem;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: var(--bg); }
+
+  /* ── Divider ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0 1.5rem;
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="page-header">
+    <div class="chapter">Wormanns · Thoraxdiagnostik · Kapitel 6.5</div>
+    <h1>Diffuse Lungenparenchymerkrankungen<br><span style="font-weight:400;font-size:1.1rem;color:#5a6270">Zusammenfassung für die tägliche Arbeit</span></h1>
+    <div class="source">Wormanns, Thoraxdiagnostik, Thieme 2017 · Kap. 6.5–6.5.4</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       ÜBERBLICK: 4 KATEGORIEN
+  ══════════════════════════════════════════ -->
+  <div class="card" style="border-left:4px solid var(--accent);">
+    <h3>Die 4 großen Kategorien</h3>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.6rem;margin-top:0.4rem;">
+      <div class="tag" style="font-size:0.82rem;padding:0.35rem 0.7rem;">① Idiopathische interstitielle Pneumonien (IIP)</div>
+      <div class="tag" style="font-size:0.82rem;padding:0.35rem 0.7rem;">② Bekannte Ursache (Kollagenosen, Medikamente, Strahlung …)</div>
+      <div class="tag green" style="font-size:0.82rem;padding:0.35rem 0.7rem;">③ Granulomatöse Erkrankungen (Sarkoidose …)</div>
+      <div class="tag orange" style="font-size:0.82rem;padding:0.35rem 0.7rem;">④ Sonstige (PLCH, LAM, Alveolarproteinose, Vaskulitis)</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══════════════════════════════════════════
+       6.5.1 IIP
+  ══════════════════════════════════════════ -->
+  <div class="section-title">
+    <span class="num">6.5.1</span>
+    <h2>Idiopathische interstitielle Pneumonien (IIP)</h2>
+  </div>
+
+  <!-- UIP -->
+  <div class="card">
+    <h3>UIP – Gewöhnliche interstitielle Pneumonie <span style="font-weight:400;color:var(--text-muted);font-size:0.85rem">(= IPF-Korrelat)</span></h3>
+
+    <div class="criteria-box positive">
+      <div class="label">✓ Typische CT-Kriterien (alle 3 → Diagnose gesichert, keine Biopsie nötig)</div>
+      <ul class="dot green">
+        <li>Retikuläre Verdichtungen</li>
+        <li>Subpleural + basal betont</li>
+        <li>Honigwabenmuster</li>
+      </ul>
+    </div>
+
+    <div class="criteria-box info">
+      <div class="label">~ Möglich (ohne Honigwaben)</div>
+      <ul class="dot">
+        <li>Retikulär + subpleural/basal, aber kein Honigwabenmuster → UIP möglich, nicht gesichert</li>
+      </ul>
+    </div>
+
+    <div class="criteria-box negative">
+      <div class="label">✗ Ausschluss-Kriterien (eines genügt → nicht UIP)</div>
+      <ul class="dot red" style="column-count:2;column-gap:1rem;">
+        <li>Befall Ober-/Mittelgeschoss betont</li>
+        <li>Peribronchovaskulär betont</li>
+        <li>Milchglas > retikulär</li>
+        <li>Viele Mikronoduli (apikal, bilateral)</li>
+        <li>Multiple Zysten (außerhalb Honigwaben)</li>
+        <li>Diffuses Mosaik / Air Trapping</li>
+        <li>Segmentale Konsolidierungen</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Andere IIP -->
+  <div class="entity-grid">
+
+    <div class="entity-card">
+      <div class="ename">NSIP</div>
+      <ul class="dot">
+        <li>Milchglastrübungen + intralobuläre irreguläre Verdichtungen</li>
+        <li><strong>Kein</strong> Honigwabenmuster → DD zur UIP</li>
+      </ul>
+      <div class="tags"><span class="tag">Biopsie empfohlen</span></div>
+    </div>
+
+    <div class="entity-card">
+      <div class="ename">COP – Kryptogene organisierende Pneumonie</div>
+      <ul class="dot">
+        <li>Antibiotikarefraktäre Konsolidierungen, meist bilateral</li>
+        <li>In 10 %: nur solitäre Konsolidierung</li>
+      </ul>
+      <div class="tags"><span class="tag">Biopsie empfohlen</span></div>
+    </div>
+
+    <div class="entity-card">
+      <div class="ename">AIP – Akute interstitielle Pneumonie</div>
+      <ul class="dot">
+        <li>Schwer, hohe Letalität</li>
+        <li>Ausgedehnte bilaterale Milchglastrübungen + Konsolidierungen</li>
+        <li>Ähnelt ARDS radiologisch</li>
+      </ul>
+    </div>
+
+    <div class="entity-card">
+      <div class="ename">Rauch-assoziiert: RB-ILD / DIP</div>
+      <ul class="dot">
+        <li><strong>RB-ILD:</strong> kleine zentrilobuläre Herde</li>
+        <li><strong>DIP:</strong> bilaterale Milchglastrübungen, Alveolen betroffen</li>
+      </ul>
+      <div class="tags"><span class="tag orange">Raucher</span></div>
+    </div>
+
+  </div>
+
+  <div class="merke">
+    <div class="merke-label">Merke</div>
+    <p>~90 % der IIP lassen sich klassifizieren; ≥10 % bleiben unklassifizierbar. Nur bei vollständigem UIP-Muster ohne Ausschlusskriterien ist keine Biopsie nötig.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══════════════════════════════════════════
+       6.5.2 BEKANNTE URSACHE
+  ══════════════════════════════════════════ -->
+  <div class="section-title">
+    <span class="num">6.5.2</span>
+    <h2>Diffuse DLPE bekannter Ursache</h2>
+  </div>
+
+  <div class="entity-grid">
+
+    <div class="entity-card">
+      <div class="ename">Kollagenosen (SLE, SSc, Myositis …)</div>
+      <ul class="dot">
+        <li>Häufig Lungenbeteiligung, bestimmt Prognose</li>
+        <li>Meist <strong>NSIP-Muster</strong></li>
+        <li>Ausnahme Rheumatoidarthritis → <strong>UIP-Muster</strong></li>
+        <li>CT >> Rö zur Komplikationsdetektion</li>
+      </ul>
+      <div class="tags"><span class="tag">Dosisreduktion beachten</span></div>
+    </div>
+
+    <div class="entity-card">
+      <div class="ename">Medikamente / Noxen</div>
+      <ul class="dot">
+        <li>Medikamententoxische Pneumopathie: ~1000 Substanzen</li>
+        <li>Ressource: <strong>pneumotox.com</strong></li>
+        <li>Strahlung: &gt;20 Gy → Pneumonitis möglich; ab 40 Gy regelmäßig</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══════════════════════════════════════════
+       6.5.3 GRANULOMATÖSE
+  ══════════════════════════════════════════ -->
+  <div class="section-title">
+    <span class="num">6.5.3</span>
+    <h2>Granulomatöse DLPE</h2>
+  </div>
+
+  <div class="card">
+    <h3>Sarkoidose</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-top:0.5rem;">
+      <div>
+        <div class="criteria-box info">
+          <div class="label">Rö-Bild (Stadieneinteilung)</div>
+          <ul class="dot">
+            <li>Kleinnodulär, apikal betont</li>
+            <li>Bihiläre + mediastinale Lymphadenopathie</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="criteria-box positive">
+          <div class="label">CT (typisch)</div>
+          <ul class="dot green">
+            <li>Kleinnodulär, <strong>perilymphatisch</strong> verteilt</li>
+            <li>Häufig atypisch: Milchglastrübungen, verdickte Interlobulärsepten</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="criteria-box warn" style="margin-top:0.6rem;">
+      <div class="label">Endstadium</div>
+      <ul class="dot orange">
+        <li>Konfluierende Konsolidierungen → progressive massive Fibrose</li>
+        <li>Schließlich Lungenfibrose</li>
+      </ul>
+    </div>
+    <p style="font-size:0.82rem;color:var(--text-muted);margin-top:0.5rem;">CT-Befund fließt <em>nicht</em> in die prognostische Stadieneinteilung ein (diese basiert rein auf dem Rö-Bild).</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══════════════════════════════════════════
+       6.5.4 SONSTIGE
+  ══════════════════════════════════════════ -->
+  <div class="section-title">
+    <span class="num">6.5.4</span>
+    <h2>Sonstige diffuse DLPE</h2>
+  </div>
+
+  <!-- Zystische Erkrankungen -->
+  <div class="card">
+    <h3>Zystische Erkrankungen: PLCH vs. LAM</h3>
+    <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:0.8rem;">Beide → multiple Lungenzysten, häufige Erstmanifestation: Spontanpneumothorax</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Merkmal</th>
+          <th>PLCH (Langerhans-Zell-Histiozytose)</th>
+          <th>LAM (Lymphangioleiomyomatose)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Patientenprofil</td>
+          <td>Junge Raucher / Kinder (Syndrome)</td>
+          <td>Frauen im mittleren Lebensalter</td>
+        </tr>
+        <tr>
+          <td>CT-Hauptbefund</td>
+          <td>Dünnwandige Zysten + zentrilobuläre Rundherde (→ Einschmelzung)</td>
+          <td>Dünnwandige Zysten (diffus)</td>
+        </tr>
+        <tr>
+          <td>Verteilung</td>
+          <td>Apikal betont, kostophrene Winkel ausgespart</td>
+          <td>Diffus, keine Präferenz</td>
+        </tr>
+        <tr>
+          <td>Extrapulmonal</td>
+          <td>—</td>
+          <td>Renale Angiomyolipome, retroperitoneale Lymphangioleiomyome</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Alveolarproteinose -->
+  <div class="card">
+    <h3>Alveolarproteinose</h3>
+    <ul class="dot">
+      <li>Raucher mittleren Alters; Abbaustörung des Surfactant</li>
+      <li>CT: <strong>Crazy-Paving-Muster</strong> = landkartenartige Milchglastrübungen + überlagertes retikuläres Muster</li>
+    </ul>
+    <div class="tags"><span class="tag">Pathognomonisches CT-Bild</span></div>
+  </div>
+
+  <!-- Vaskulitiden -->
+  <div class="card">
+    <h3>Vaskulitiden der kleinen Gefäße – Klinische Warnzeichen</h3>
+    <div class="criteria-box warn">
+      <div class="label">Daran denken bei …</div>
+      <ul class="dot orange">
+        <li>Ulzerierende / deformierende Läsionen der oberen Atemwege</li>
+        <li>Mononeuritis multiplex</li>
+        <li>Rasch progrediente Glomerulonephritis</li>
+        <li>Diffuse alveoläre Hämorrhagien</li>
+        <li>Multiple pulmonale Noduli, v. a. mit Kavitäten</li>
+      </ul>
+    </div>
+    <p style="font-size:0.82rem;color:var(--text-muted);">Befunde unspezifisch → können Infektionen, Kollagenosen, Malignome imitieren. <strong>Diagnose: Vaskulitis überhaupt in Betracht ziehen!</strong></p>
+  </div>
+
+  <!-- Vaskulitis Tabelle -->
+  <div class="card">
+    <h3>Radiologische Befunde: Vaskulitiden im Vergleich</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Entität</th>
+          <th>Schlüsselbefunde CT</th>
+          <th>Labor-Tipp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Granulomatöse Polyangiitis</strong><br><span style="font-size:0.77rem;color:#888">(Wegener)</span></td>
+          <td>Kavitäre Rundherde; bilaterale Milchglastrübungen + Konsolidierungen; selten Tracheal-/Bronchusstenose; Pleuraerguss</td>
+          <td>c-ANCA ↑</td>
+        </tr>
+        <tr>
+          <td><strong>Eosinophile Granulomatose</strong><br><span style="font-size:0.77rem;color:#888">(Churg-Strauss)</span></td>
+          <td>Bilaterale Milchglastrübungen (peripher), verdickte Interlobulärsepten, Asthma-Zeichen</td>
+          <td>p-ANCA ↑, Eosinophilie, Asthma</td>
+        </tr>
+        <tr>
+          <td><strong>Mikroskopische Polyangiitis</strong></td>
+          <td>Bilaterale Milchglastrübungen (diffuse Hämorrhagie); in ¼ Lungenfibrose</td>
+          <td>p-ANCA (MPO) ↑</td>
+        </tr>
+        <tr>
+          <td><strong>Goodpasture-Syndrom</strong></td>
+          <td>Diffuse bilaterale Milchglastrübungen, Subpleuralraum ausgespart</td>
+          <td>Anti-GBM-AK, junger Mann</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DAH -->
+  <div class="merke">
+    <div class="merke-label">Merke · Diffuse alveoläre Hämorrhagie (DAH)</div>
+    <p>CT: bilaterale Milchglastrübungen mit <strong>Aussparung des Subpleuralraums</strong>. Wichtigste Ursachen: granulomatöse Polyangiitis, mikroskopische Polyangiitis, Goodpasture-Syndrom. Weitere: Kollagenosen (SLE, MCTD …), Gerinnungsstörungen, Stammzell-/Lungentransplantation, Mitralstenose, Medikamente, Inhalationstrauma.</p>
+  </div>
+
+  <p style="font-size:0.75rem;color:var(--text-muted);margin-top:2rem;text-align:center;">
+    Wormanns, Thoraxdiagnostik (Thieme 2017) · Kap. 6.5 · Zusammenfassung für den klinischen Alltag
+  </p>
+
+</div>
+</body>
+</html>
