@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Kontrastmittel – Klinische Zusammenfassung</title>
+<style>
+  :root {
+    --bg: #1a1d23;
+    --surface: #22262e;
+    --surface2: #2a2f3a;
+    --border: #363c4a;
+    --text: #e2e6ee;
+    --muted: #8b93a8;
+    --accent-iod: #4db8d4;
+    --accent-bar: #e0a84a;
+    --accent-mrt: #7b6ff0;
+    --accent-nw: #e05a5a;
+    --accent-co2: #52c98a;
+    --accent-akut: #f0854a;
+    --merke: #4db8d4;
+    --cave: #e05a5a;
+    --tag-bg: #2a3040;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 24px 20px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .subtitle { color: var(--muted); font-size: 12px; margin-bottom: 24px; }
+  h2 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 28px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--border);
+  }
+  h2.iod { color: var(--accent-iod); border-color: var(--accent-iod); }
+  h2.bar { color: var(--accent-bar); border-color: var(--accent-bar); }
+  h2.mrt { color: var(--accent-mrt); border-color: var(--accent-mrt); }
+  h2.nw  { color: var(--accent-nw);  border-color: var(--accent-nw);  }
+  h2.co2 { color: var(--accent-co2); border-color: var(--accent-co2); }
+  h2.akut{ color: var(--accent-akut);border-color: var(--accent-akut);}
+  h3 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 18px 0 8px;
+  }
+  .grid { display: grid; gap: 10px; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .card-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 8px;
+  }
+  .card-title.iod  { color: var(--accent-iod); }
+  .card-title.bar  { color: var(--accent-bar); }
+  .card-title.mrt  { color: var(--accent-mrt); }
+  .card-title.nw   { color: var(--accent-nw); }
+  .card-title.co2  { color: var(--accent-co2); }
+  .card-title.akut { color: var(--accent-akut); }
+  ul { list-style: none; padding: 0; }
+  ul li { padding: 2px 0 2px 14px; position: relative; font-size: 13px; }
+  ul li::before { content: '·'; position: absolute; left: 2px; color: var(--muted); }
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 11px;
+    padding: 1px 7px;
+    margin: 2px 3px 2px 0;
+    color: var(--text);
+  }
+  .tag.iod  { border-color: var(--accent-iod);  color: var(--accent-iod); }
+  .tag.bar  { border-color: var(--accent-bar);  color: var(--accent-bar); }
+  .tag.mrt  { border-color: var(--accent-mrt);  color: var(--accent-mrt); }
+  .tag.nw   { border-color: var(--accent-nw);   color: var(--accent-nw); }
+  .tag.co2  { border-color: var(--accent-co2);  color: var(--accent-co2); }
+  .box-merke {
+    background: #152535;
+    border-left: 3px solid var(--merke);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 13px;
+  }
+  .box-merke strong { color: var(--merke); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 4px; }
+  .box-cave {
+    background: #2a1515;
+    border-left: 3px solid var(--cave);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 13px;
+  }
+  .box-cave strong { color: var(--cave); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 4px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    margin: 10px 0;
+  }
+  th {
+    background: var(--surface2);
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    padding: 8px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:hover td { background: var(--surface2); }
+  .dose { font-family: monospace; font-size: 12px; color: var(--accent-iod); }
+  .sev-mild  { color: #52c98a; font-weight: 600; }
+  .sev-mod   { color: #e0a84a; font-weight: 600; }
+  .sev-sev   { color: #e05a5a; font-weight: 600; }
+  .step {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent-akut);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .divider { height: 1px; background: var(--border); margin: 24px 0 0; }
+  em { color: var(--muted); font-style: normal; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<h1>Kontrastmittel – Klinische Zusammenfassung</h1>
+<div class="subtitle">Leissner &amp; Lewentat · Radiopraxis 2010 · DOI 10.1055/s-0030-1265068 · Für Facharztprüfung &amp; klinischen Alltag</div>
+
+<!-- ══════════════════════════════════════════ -->
+<h2 class="iod">Jodhaltige Röntgenkontrastmittel</h2>
+
+<div class="grid grid-3">
+
+  <div class="card">
+    <div class="card-title iod">Wasserlöslich · Ionisch</div>
+    <ul>
+      <li>Hyperosmolar (schlechter verträglich)</li>
+      <li>Endothelschädigung bei intravasal</li>
+      <li>Laxierende Wirkung im GI-Trakt</li>
+      <li>Aspiration → Lungenödem-Risiko</li>
+    </ul>
+    <div style="margin-top:10px;">
+      <div style="color:var(--muted);font-size:11px;margin-bottom:4px;">BEISPIELE / INDIKATION</div>
+      <span class="tag iod">Gastrografin (Amidotrizoesäure)</span>
+      <span class="tag iod">Gastrolux</span>
+      <span class="tag iod">Peritrast</span>
+      <br><em>GI-Trakt bei KI gegen BaSO₄ (Perforationsverdacht, Fistel)</em>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title iod">Wasserlöslich · Nicht-ionisch</div>
+    <ul>
+      <li>Niedrig-/iso-osmolar → besser verträglich</li>
+      <li>Niedrige Viskosität</li>
+      <li>Vorwärmen senkt Viskosität</li>
+      <li>Ausscheidung renal (&gt;95%), minimal biliär</li>
+    </ul>
+    <div style="margin-top:10px;">
+      <div style="color:var(--muted);font-size:11px;margin-bottom:4px;">BEISPIELE / INDIKATION</div>
+      <span class="tag iod">Iohexol (Accupaque)</span>
+      <span class="tag iod">Iomeprol (Imeron)</span>
+      <span class="tag iod">Iodixanol (Visipaque, iso)</span>
+      <br><em>CT · Angiografie · Urografie · intrathek. · intraartikulär</em>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title bar">Fettlöslich · Ölig</div>
+    <ul>
+      <li>Diagnostisch nur noch: Lymphografie</li>
+      <li>Interventionell: Embolisation (mit Histoacryl)</li>
+      <li>Risiko: Ölembolie bei versehentl. venöser Gabe</li>
+      <li>Allergische Reaktionen möglich</li>
+    </ul>
+    <div style="margin-top:10px;">
+      <div style="color:var(--muted);font-size:11px;margin-bottom:4px;">BEISPIEL</div>
+      <span class="tag bar">Lipiodol</span>
+    </div>
+  </div>
+
+</div>
+
+<h3>Applikationsweg & typische Untersuchungen</h3>
+<div class="grid grid-2">
+  <div class="card">
+    <div class="card-title iod">Intravasal / i.v.</div>
+    <ul>
+      <li><strong>CT</strong> – Accupaque / Imeron (Hochdruckinjektor)</li>
+      <li><strong>Angiografie</strong> – Imeron, Ultravist</li>
+      <li><strong>Urografie</strong> – Imeron i.v.</li>
+      <li><strong>Phlebografie</strong> – jodhaltig i.v.</li>
+      <li><strong>Myelografie</strong> – Iohexol intrathekal</li>
+      <li><strong>Arthrografie</strong> – intraartikulär verdünnt</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-title bar">Oral / rektal</div>
+    <ul>
+      <li><strong>Ösophagus-Breischluck</strong> – BaSO₄ (Standard); Gastrografin bei Perforationsverdacht</li>
+      <li><strong>Magen/Dünndarm/Dickdarm DC</strong> – BaSO₄ + Luft/CO₂</li>
+      <li><strong>Kontrasteinlauf</strong> – BaSO₄ oder Gastrografin</li>
+      <li><strong>CT-GI</strong> – BaSO₄ oral oder Gastrografin verdünnt</li>
+      <li><strong>Lymphografie</strong> – Lipiodol</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<h2 class="bar">Bariumhaltige Kontrastmittel</h2>
+
+<div class="card">
+  <ul>
+    <li>BaSO₄-Suspension · <strong>nicht resorbierbar</strong></li>
+    <li>Nicht intravasal, nicht intrathekal verwendbar</li>
+    <li>Mono- und Doppelkontrastverfahren (mit Luft/CO₂)</li>
+  </ul>
+  <div class="box-cave" style="margin-top:10px;">
+    <strong>Cave – Absolute KI</strong>
+    Perforationsverdacht, Fistelbildung, Aspirationsgefahr → Schwere Fremdkörper-/Entzündungsreaktion des Peritoneums oder Alveolarwände möglich. → Stattdessen: wasserlösliches ionisches KM (Gastrografin).
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<h2 class="nw">Nebenwirkungen jodhaltiger KM</h2>
+
+<h3>1 · Kontrastmittelinduzierte Nephropathie (CIN)</h3>
+<div class="grid grid-2">
+  <div class="card">
+    <div class="card-title nw">Definition &amp; Verlauf</div>
+    <ul>
+      <li>Kreatinin↑ innerhalb 24h, Maximum bis Tag 5</li>
+      <li>Bis 30% → dauerhafte Nierenfunktionseinschränkung</li>
+      <li>Auch ohne manifestes NV: Prognoseverschlechterung</li>
+    </ul>
+    <div class="box-merke" style="margin-top:8px;">
+      <strong>GFR-Grenze</strong>
+      Ab GFR ≤ 60 ml/min/1,73 m² (Stadium III–V) → Prophylaxe + strenge Indikationsstellung
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title nw">Risikofaktoren</div>
+    <ul>
+      <li>Vorbestehende Niereninsuffizienz</li>
+      <li>Diabetes mellitus</li>
+      <li>Hohes Alter · Herzinsuffizienz · Hypotension · Anämie</li>
+      <li>Hohe KM-Menge · hohe Osmolarität · Ionizität</li>
+      <li>NSAIDs ↑ CIN-Risiko → pausieren!</li>
+      <li>Metformin → Laktatazidose-Risiko → pausieren!</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Prophylaxe-Algorithmus (Kreatinin 1,5–3,5 mg/dl)</h3>
+<div class="card">
+  <ul>
+    <li>Hydrierung: <span class="dose">NaCl 0,9% · 1 ml/kg/h · mindestens 12h vor und 12h nach KM</span></li>
+    <li>Optional: <span class="dose">N-Acetylcystein (ACC) 2×600 mg p.o. am Tag vor und am Tag der Untersuchung</span></li>
+    <li>Bei Krea &gt;3,5 mg/dl → Nutzen-Risiko-Abwägung, ACC empfohlen, Alternativen prüfen</li>
+  </ul>
+  <div class="box-cave" style="margin-top:8px;">
+    <strong>Metformin-Schema</strong>
+    Elektiv normal. Krea: Absetzen am Untersuchungstag, Wiederaufnahme nach 48h (wenn Krea normal). — Elektiv erhöhtes Krea: 2d vorher absetzen, Wiederaufnahme 48h nach KM. — Notfall erhöhtes/unbekanntes Krea: Absetzen + Hydrierung + Laktat/pH-Monitoring.
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<h3 style="margin-top:18px;">2 · Anaphylaktoide Reaktionen – Tab. 1</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Schweregrad</th>
+      <th>Symptome</th>
+      <th>Häufigkeit (nicht-ion. KM)</th>
+      <th>Maßnahmen</th>
+      <th>Medikamente</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="sev-mild">Lokal / Leicht</span></td>
+      <td>Hautrötung, Flush, Urtikaria, Pruritus, Niesen, Tränen, Übelkeit, Erbrechen, Kopfschmerz</td>
+      <td>~3%</td>
+      <td>Dokumentation · Patient hinlegen · ruhige Umgebung · Vitalzeichen (RR, Puls)</td>
+      <td>H1-Ant. (z.B. Dimetindenmaleat 8mg i.v.) · H2-Ant. (z.B. Cimetidin 400mg) · O₂ · ggf. (Methyl-)Prednisolon i.v.</td>
+    </tr>
+    <tr>
+      <td><span class="sev-mod">Moderat</span></td>
+      <td>Mäßige Atemnot, Bronchospasmus, Blutdruckabfall</td>
+      <td>0,2–0,4%</td>
+      <td>Wie oben + intensivere Überwachung</td>
+      <td>Wie oben + Kortikosteroid i.v.</td>
+    </tr>
+    <tr>
+      <td><span class="sev-sev">Schwer</span></td>
+      <td>Kreislaufstillstand, Bewusstlosigkeit, Lungenödem, Herzrhythmusstörungen, Krampfanfälle</td>
+      <td>~0,04%</td>
+      <td>ICU-Maßnahmen · ggf. Herzdruckmassage · externe Hilfe (REA-Team)</td>
+      <td>Adrenalin i.v. · Kortikosteroid · H1/H2-Ant.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box-merke">
+  <strong>Zeitfenster</strong>
+  75% aller schweren Reaktionen in den ersten 5 min · 90% in den ersten 15 min. Verzögerte Reaktionen (meist Hautreaktionen) bis 1 Woche möglich.
+</div>
+
+<h3>Prämedikation – Tab. 2</h3>
+<table>
+  <thead>
+    <tr><th>Situation</th><th>Anamnese</th><th>Prämedikation</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Elektiv</td>
+      <td>Milde/moderate Reaktion</td>
+      <td>H1 + H2-Ant. i.v. (Tavegil + Zantic je 2 Amp.) ~20–30 min vor Untersuchung</td>
+    </tr>
+    <tr>
+      <td>Elektiv</td>
+      <td>Schwere Reaktion (strenge Indikation!)</td>
+      <td>H1 + H2-Ant. i.v. + <span class="dose">250 mg Kortison mind. 6h + nochmals 2h vor KM</span> · Notfallmedikamente bereitstellen</td>
+    </tr>
+    <tr>
+      <td>Notfall</td>
+      <td>Milde/moderate Reaktion</td>
+      <td>H1 + H2-Ant. i.v. vor Untersuchung (wenn möglich 20–30 min)</td>
+    </tr>
+    <tr>
+      <td>Notfall</td>
+      <td>Schwere Reaktion</td>
+      <td>H1 + H2-Ant. i.v. + <span class="dose">250 mg Kortison vor KM</span> · Notfallmanagement</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box-cave">
+  <strong>Cave – Risikofaktoren für Anaphylaxie</strong>
+  Bekannte KM-Reaktion · Asthma · Herzerkrankungen · Dehydrierung · Betablocker / NSAIDs · allgemeiner Angstzustand
+</div>
+
+<div class="divider"></div>
+
+<h3 style="margin-top:18px;">3 · Hyperthyreose / Thyreotoxische Krise</h3>
+<div class="grid grid-2">
+  <div class="card">
+    <div class="card-title nw">Mechanismus &amp; Risiko</div>
+    <ul>
+      <li>Exogenes Jod → gesteigerte Hormonproduktion bei Autonomie/Struma</li>
+      <li>Risikogruppen: &gt;60 J. · Knotenstruma · positive SD-Anamnese · M. Basedow</li>
+      <li>Thyreotoxische Krise: sehr selten (&lt;40/5 Mio. KM-Anwendungen)</li>
+      <li>Geplante Radioiod-Therapie/Diagnostik: mind. <strong>2 Monate</strong> Abstand zur KM-Gabe</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-title nw">Prophylaxe-Algorithmus</div>
+    <ul>
+      <li>TSH &gt;0,3 mU/l → keine Prophylaxe nötig</li>
+      <li>TSH 0,1–0,3 → <span class="dose">20 Tropfen Perchlorat (Irenat)</span> vor KM</li>
+      <li>TSH &lt;0,1 → erst nuklearmedizinische SD-Untersuchung</li>
+      <li>Manifeste Hyperthyreose → strenge Indikation, endokrinolog. Abklärung, Prophylaxe mind. 2d vorher</li>
+      <li>Nachbehandlung: <span class="dose">Perchlorat 3×20 Tropfen/d für 14 Tage</span> ± Thiamazol</li>
+    </ul>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<h3 style="margin-top:18px;">4 · Paravasat (Extravasat)</h3>
+<div class="card">
+  <ul>
+    <li>Häufigkeit: 0,14–0,9% bei CT mit i.v. KM</li>
+    <li>Risiko: fragile/ödematöse Venen · große Volumina · Hochdruckinjektor</li>
+    <li>Jodhaltige KM: nicht gewebetoxisch → meist konservativ ausreichend</li>
+    <li>Therapie: Kühlen + Hochlagern der Extremität</li>
+    <li>Chir. Mitbetreuung bei: Zunehmender Schwellung · Superinfektion · Kompartmentsyndrom</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<h2 class="mrt">MRT-Kontrastmittel – Gadolinium (Kurzübersicht)</h2>
+
+<div class="grid grid-2">
+  <div class="card">
+    <div class="card-title mrt">Substanzklassen</div>
+    <table style="margin:0;">
+      <thead><tr><th>Präparat</th><th>Struktur</th></tr></thead>
+      <tbody>
+        <tr><td>Omniscan®</td><td>linear / nicht-ionisch</td></tr>
+        <tr><td>Magnevist®</td><td>linear / ionisch</td></tr>
+        <tr><td>Gadovist®</td><td><strong>makrozyklisch</strong> / nicht-ionisch</td></tr>
+        <tr><td>Dotarem®</td><td><strong>makrozyklisch</strong> / ionisch</td></tr>
+        <tr><td>Primovist®</td><td>linear / ionisch (hepatobiliär)</td></tr>
+        <tr><td>MultiHance®</td><td>linear / ionisch (schwache Proteinbindung)</td></tr>
+      </tbody>
+    </table>
+    <div class="box-merke" style="margin-top:8px;">
+      <strong>Makrozyklisch = stabiler</strong>
+      Geringere Freisetzung von Gd³⁺-Ionen → bevorzugt bei Risikopatienten
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title mrt">Wichtigste Nebenwirkungen</div>
+    <ul>
+      <li><strong>NSF (Nephrogene Systemische Fibrose):</strong> Nur bei GFR &lt;30 ml/min oder Dialyse · Haut-/Organfibrose · progredient · kaum therapierbar → bei diesen Pat. nur unter strenger Indikation, einfache Dosis</li>
+      <li><strong>Anaphylaktoide Reaktionen:</strong> 0,03–0,2% (seltener als Jod-KM)</li>
+      <li><strong>CIN:</strong> Bei normaler Nierenfunktion kein Risiko; bei Niereninsuffizienz erhöhte Gadolinium-Halbwertszeit</li>
+    </ul>
+    <div class="box-cave" style="margin-top:8px;">
+      <strong>Cave NSF-Risiko</strong>
+      GFR &lt;30 ml/min oder Dialyse → Gadolinium-KM nur bei zwingender Indikation, Alternativen prüfen
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<h2 class="co2">CO₂-Angiografie – Kurzübersicht</h2>
+
+<div class="card">
+  <ul>
+    <li>Negatives KM · 20× besser blutlöslich als O₂ · Abatmung über Lunge nach 1–3 min</li>
+    <li>Typisches Volumen: <span class="dose">20–50 ml CO₂ über Katheter pro Serie</span></li>
+    <li><strong>Indikationen:</strong> Becken-Bein-Angiografie · Shunt-/Venendarstellung · Interventionen</li>
+    <li><strong>KI gegen jod- oder gadoliniumhaltige KM:</strong> Allergie · schwere Niereninsuffizienz · manifeste Hyperthyreose → CO₂ als Alternative</li>
+    <li><strong>KI für CO₂:</strong> Schwere respiratorische Insuffizienz · supradiaphragmale Zielregion</li>
+    <li><strong>NW:</strong> Schmerzen · Kribbelparästhesien · Übelkeit · krampfartige Unterbauchschmerzen</li>
+    <li>Kein Allergie-, Nieren- oder Schilddrüsenrisiko</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<h2 class="akut">Vorgehen im Akutfall</h2>
+
+<div class="card">
+  <div class="step">
+    <div class="step-num">1</div>
+    <div><strong>Radiologen sofort verständigen</strong> · Injektion stoppen · Patienten nicht alleine lassen</div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div><strong>Vitalzeichen:</strong> RR + Puls überwachen · O₂-Sättigung wenn möglich</div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div><strong>Leichte Reaktion:</strong> Patient hinlegen · ruhige Umgebung · O₂ · H1/H2-Antagonisten i.v. · ggf. Kortikosteroid</div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div><strong>Schwere Reaktion:</strong> Stabile Seitenlage · i.v.-Zugang sichern · O₂ · REA-Team alarmieren · Adrenalin i.v. · ggf. Beatmung + Herzdruckmassage</div>
+  </div>
+  <div class="step">
+    <div class="step-num">5</div>
+    <div><strong>Dokumentation</strong> aller Maßnahmen, Zeitpunkte, Medikamente</div>
+  </div>
+</div>
+
+<div class="box-merke" style="margin-top:12px;">
+  <strong>Notfallkoffer – immer griffbereit</strong>
+  An jedem Arbeitsplatz mit KM-Gabe: Notfallmedikamente (Adrenalin, Kortison, H1/H2-Ant., ACC) + Beatmungs-/Intubationszubehör · Regelmäßige Kontrolle auf Vollständigkeit + Verfallsdaten (zertifizierte Abt.: schriftliche Dokumentation Pflicht)
+</div>
+
+<div class="box-cave">
+  <strong>Regelmäßige Schulung aller Berufsgruppen ist Pflicht</strong>
+  Kein vollständig wirksames Präventionsschema bekannt. Frühzeitiges Erkennen + sofortiges Handeln entscheidend. Leichte Reaktionen können Vorboten schwerer Reaktionen sein.
+</div>
+
+<div class="divider"></div>
+<div style="color:var(--muted);font-size:11px;text-align:center;padding:16px 0 4px;">
+  Leissner &amp; Lewentat · Radiopraxis 2010;3:123–136 · DOI 10.1055/s-0030-1265068 · Zusammenfassung für klinischen Einsatz
+</div>
+
+</body>
+</html>
